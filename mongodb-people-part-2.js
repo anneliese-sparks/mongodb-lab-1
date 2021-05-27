@@ -32,7 +32,7 @@ db.people.replace({first_name: 'Jerry', last_name: 'Baker-Mendez'}), { first_nam
 // Delete Wanda Bowman.
 db.people.deleteOne({first_name: Wanda, last_name: Bowman})
 // Delete everyone who does not have an email address specified. (expect 37 matches)
-db.people.deleteMany({email: ''})
+db.people.deleteMany({email: null})
 
 // In submissions collection
 // Add several documents to a new submissions collection. Do it all in one command. (Remember, MongoDB will create the collection for you. Just start adding documents.)
@@ -54,3 +54,4 @@ db.submissions.insertMany([
 db.submissions.updateOne({title: 'The River Bend'}, {$inc: {upvotes: 2}})
 
 // Add a field round2 = true to all submissions with at least 10 upvotes. (expect 3 matches)
+db.submissions.updateMany({upvotes: {$gte: 10}}, {$set: {round2: true}})
